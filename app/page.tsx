@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 type Step =
   | "identity"
@@ -30,6 +30,7 @@ export default function Home() {
   const [betterIdea, setBetterIdea] = useState(false);
   const [ideaText, setIdeaText] = useState("");
   const [finalMessage, setFinalMessage] = useState("");
+  const cursorRef = useRef<HTMLDivElement>(null);
 
   const progress = useMemo(() => {
     const order: Step[] = [
@@ -99,7 +100,24 @@ export default function Home() {
   }
 
   return (
-    <main className="story-shell">
+    <main
+      className="story-shell"
+      onPointerMove={(event) => {
+        const cursorElement = cursorRef.current;
+        if (event.pointerType === "mouse" && cursorElement) {
+          cursorElement.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+          cursorElement.classList.add("visible");
+        }
+      }}
+      onPointerLeave={() => cursorRef.current?.classList.remove("visible")}
+    >
+      <div
+        aria-hidden="true"
+        className="custom-cursor"
+        ref={cursorRef}
+      >
+        ♡
+      </div>
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
       <div className="floating-symbol symbol-one">✦</div>
@@ -228,10 +246,10 @@ export default function Home() {
             <figure className="story-illustration">
               <img
                 src="/qiexuan-story.png"
-                alt="茄子形象的茄茄和小太阳形象的玄玄牵手、拥抱、依偎和亲亲"
+                alt="较小的茄茄和较高的小太阳玄玄牵手、拥抱、依偎和亲亲"
               />
               <figcaption>
-                牵手 · 拥抱 · 肩并肩 · 靠在一起 · 亲亲 · 抱在怀里
+                牵手 · 拥抱 · 肩并肩 · 靠在一起 · 亲亲 · 相互依偎
               </figcaption>
             </figure>
             <button className="primary-button" onClick={() => setStep("date")}>
@@ -243,9 +261,9 @@ export default function Home() {
         {step === "date" && (
           <div className="step-content">
             <MascotPair />
-            <p className="eyebrow">第四关 · 把期待圈起来</p>
+            <p className="eyebrow">把期待圈起来</p>
             <h1>我们什么时候见面？</h1>
-            <p className="lead">不管选哪一天，小太阳都在朝茄茄靠近。</p>
+            <p className="lead">不管选哪一天，小太阳和茄茄都在向彼此靠近。</p>
             <div className="date-grid">
               <button className="date-card" onClick={() => chooseDate("8.7")}>
                 <span className="date-day">8.7</span>
@@ -268,7 +286,7 @@ export default function Home() {
               <span className="route-heart">♡</span>
               <span>秦皇岛</span>
             </div>
-            <p className="eyebrow">第五关 · 一起回家</p>
+            <p className="eyebrow">一起回家</p>
             <h1>那玄玄愿意来北京，带我一起回秦皇岛吗？</h1>
             <p className="lead">这是属于 8.7 晚的小小约定。</p>
             {!betterIdea ? (
@@ -331,7 +349,7 @@ export default function Home() {
             <h1>{finalMessage}</h1>
             <p className="lead">
               {dateChoice === "8.7"
-                ? "从北京到秦皇岛，茄茄和玄玄要一起笑着出发。"
+                ? "从广州出发，跨过北京，再一起回到秦皇岛——茄茄和玄玄终于要向彼此奔赴啦。"
                 : "倒数每一个日落，直到我们在秦皇岛见面。"}
             </p>
             <div className="promise-note">今天也要做茄茄最最可爱的小太阳 ☀</div>
@@ -342,7 +360,7 @@ export default function Home() {
         )}
       </section>
 
-      <footer>给茄茄的小太阳 · 一份只属于我们的见面邀请</footer>
+      <footer>给茄茄的小太阳 · 我们会一步一步向彼此靠近</footer>
 
       {identityFailed && (
         <div className="modal-backdrop" role="dialog" aria-modal="true">

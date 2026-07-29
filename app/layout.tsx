@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const imageUrl = `${protocol}://${host}/og.png`;
 
   return {
-    title: "茄茄与玄玄的小小见面邀请",
+    title: "茄茄与玄玄的小故事",
     description: "一份写给茄茄的小太阳的温馨互动故事。",
     icons: {
       icon: "/favicon.svg",
@@ -22,14 +22,14 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     openGraph: {
       title: "茄茄与玄玄",
-      description: "一份小小的见面邀请",
+      description: "向彼此靠近的每一天",
       type: "website",
       images: [{ url: imageUrl, width: 1672, height: 941 }],
     },
     twitter: {
       card: "summary_large_image",
       title: "茄茄与玄玄",
-      description: "一份小小的见面邀请",
+      description: "向彼此靠近的每一天",
       images: [imageUrl],
     },
   };

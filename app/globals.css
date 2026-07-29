@@ -245,7 +245,7 @@ h1 {
 .mascot-pair {
   display: flex;
   min-height: 150px;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 10px;
 }
@@ -260,13 +260,30 @@ h1 {
   animation: bob 3s ease-in-out infinite;
 }
 
+.eggplant-mascot {
+  width: 102px;
+  height: 116px;
+}
+
+.sun-mascot {
+  width: 132px;
+  height: 144px;
+}
+
 .sun-mascot {
   animation-delay: -1.5s;
 }
 
 .mascot-emoji {
-  font-size: 92px;
   filter: drop-shadow(0 13px 13px rgba(80, 45, 91, 0.13));
+}
+
+.eggplant-mascot .mascot-emoji {
+  font-size: 78px;
+}
+
+.sun-mascot .mascot-emoji {
+  font-size: 108px;
 }
 
 .mascot-face {
@@ -280,6 +297,14 @@ h1 {
   font-size: 14px;
   font-weight: 900;
   transform: translateX(-50%);
+}
+
+.eggplant-mascot .mascot-face {
+  top: 48px;
+}
+
+.sun-mascot .mascot-face {
+  top: 62px;
 }
 
 .mascot small {
@@ -566,11 +591,19 @@ h1 {
 }
 
 .date-card:first-child {
-  background: linear-gradient(160deg, #efe3fa, #fff);
+  background: linear-gradient(
+    160deg,
+    rgba(221, 200, 242, 0.42),
+    rgba(255, 255, 255, 0.94)
+  );
 }
 
 .date-card:last-child {
-  background: linear-gradient(160deg, #fff3b7, #fff);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 247, 207, 0.44),
+    rgba(255, 255, 255, 0.94)
+  );
 }
 
 .date-day {
@@ -581,7 +614,7 @@ h1 {
 }
 
 .date-card:last-child .date-day {
-  color: #bc8312;
+  color: #9b751d;
 }
 
 .date-card small {
@@ -668,36 +701,55 @@ h1 {
 .happy-pair {
   display: flex;
   min-height: 190px;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 14px;
 }
 
 .happy-character {
   position: relative;
-  width: 150px;
-  height: 160px;
   animation: happy-bounce 1.8s ease-in-out infinite;
 }
 
+.eggplant-happy {
+  width: 126px;
+  height: 142px;
+}
+
 .sun-happy {
+  width: 166px;
+  height: 178px;
   animation-delay: -0.9s;
 }
 
 .happy-character span {
-  font-size: 116px;
   filter: drop-shadow(0 15px 18px rgba(87, 48, 111, 0.15));
+}
+
+.eggplant-happy span {
+  font-size: 94px;
+}
+
+.sun-happy span {
+  font-size: 130px;
 }
 
 .happy-character b {
   position: absolute;
-  top: 69px;
   left: 50%;
   padding: 3px 7px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.76);
   font-size: 16px;
   transform: translateX(-50%);
+}
+
+.eggplant-happy b {
+  top: 57px;
+}
+
+.sun-happy b {
+  top: 78px;
 }
 
 .pink-heart {
@@ -833,6 +885,32 @@ footer {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-align: center;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: -12px;
+  left: -12px;
+  z-index: 100;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  background: rgba(255, 249, 213, 0.88);
+  box-shadow:
+    0 0 0 5px rgba(248, 217, 104, 0.18),
+    0 6px 16px rgba(87, 48, 111, 0.18);
+  color: var(--pink);
+  font-size: 15px;
+  font-weight: 900;
+  transition: opacity 120ms ease;
+}
+
+.custom-cursor.visible {
+  opacity: 1;
 }
 
 @keyframes arrive {
@@ -1049,6 +1127,20 @@ footer {
   footer {
     margin-top: 13px;
     letter-spacing: 0.03em;
+  }
+}
+
+@media (pointer: fine) {
+  body,
+  button,
+  textarea {
+    cursor: none !important;
+  }
+}
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
   }
 }
 
