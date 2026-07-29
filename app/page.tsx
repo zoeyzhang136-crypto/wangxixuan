@@ -245,7 +245,7 @@ export default function Home() {
             <p className="lead">想把好多好多温柔的瞬间，都变成真的。</p>
             <figure className="story-illustration">
               <img
-                src="/qiexuan-story.png"
+                src="qiexuan-story.png"
                 alt="较小的茄茄和较高的小太阳玄玄牵手、拥抱、依偎和亲亲"
               />
               <figcaption>
