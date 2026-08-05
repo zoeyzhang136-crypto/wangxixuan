@@ -4,45 +4,29 @@ import "./globals.css";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "localhost:3000";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ??
-    (host.includes("localhost") ? "http" : "https");
+  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
+  const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.includes("localhost") ? "http" : "https");
   const imageUrl = `${protocol}://${host}/og.png`;
 
   return {
-    title: "茄茄与玄玄的小故事",
-    description: "一份写给茄茄的小太阳的温馨互动故事。",
-    icons: {
-      icon: "/favicon.svg",
-      shortcut: "/favicon.svg",
-    },
+    title: "王XX专属收藏夹｜茄茄与玄玄",
+    description: "收藏王XX与茄茄在2026年夏天的成就、晴天、旅行盲盒和一封未来信。",
+    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
     openGraph: {
-      title: "茄茄与玄玄",
-      description: "向彼此靠近的每一天",
+      title: "王XX专属收藏夹",
+      description: "这个夏天，收藏了好多好事情。",
       type: "website",
       images: [{ url: imageUrl, width: 1672, height: 941 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "茄茄与玄玄",
-      description: "向彼此靠近的每一天",
+      title: "王XX专属收藏夹",
+      description: "这个夏天，收藏了好多好事情。",
       images: [imageUrl],
     },
   };
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="zh-CN">
-      <body>{children}</body>
-    </html>
-  );
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="zh-CN"><body>{children}</body></html>;
 }
