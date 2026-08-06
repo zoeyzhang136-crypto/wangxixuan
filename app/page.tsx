@@ -26,6 +26,10 @@ const blindNotes = [
   { condition: "如果不知道干嘛", action: "随便走走", icon: "👣" },
   { condition: "如果看到好看的东西", action: "记录下来", icon: "📷" },
   { condition: "如果某个人突然开心", action: "获得隐藏奖励", icon: "🎁" },
+  { condition: "如果赶海时发现第一只小螃蟹", action: "两个人一起给它取个名字，然后把它送回海里", icon: "🦀" },
+  { condition: "如果王XX准备了一个没有提前告诉茄茄的地方", action: "给三个提示，让茄茄猜一次", icon: "🗺️" },
+  { condition: "如果一天快要结束", action: "每个人说出一个今天最喜欢的瞬间", icon: "🌙" },
+  { condition: "如果有人开始纠结", action: "把决定权交给另一个人", icon: "🧭" },
 ];
 
 const moods = ["开心", "伤心", "难受", "失望", "想茄茄"];
@@ -266,7 +270,7 @@ function BlindBox() {
     <div className="page-content blindbox-page">
       <p className="eyebrow">TODAY'S RANDOM EVENT</p>
       <h1>秦皇岛旅行盲盒</h1>
-      <p className="lead">计划之外，也给今天留一点随机。摇一摇纸条罐，抽出属于你们的今日事件。</p>
+      <p className="lead">计划之外，也给今天留一点随机。摇一摇纸条罐，抽出属于我们的今日事件。</p>
       <div className={`note-jar ${drawing ? "shaking" : ""}`} aria-hidden="true">
         <div className="jar-lid" /><div className="jar-body">
           {blindNotes.map((note, index) => <span key={note.condition} style={{ "--r": `${-16 + index * 8}deg`, "--x": `${12 + (index % 3) * 30}px` } as React.CSSProperties}>小纸条</span>)}
